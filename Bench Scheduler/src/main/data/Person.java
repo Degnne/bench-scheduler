@@ -27,4 +27,8 @@ public class Person {
     public List<Bench> getTrainedBenches() {
         return trainedBenches;
     }
+
+    public boolean trainedOnBench(Bench bench) {
+        return trainedBenches.contains(bench);
+    }
 }

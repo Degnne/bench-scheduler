@@ -8,4 +8,8 @@ public class Scheduler {
     private Lab lab = new Lab();
     private WorkWeek workWeek = new WorkWeek();
 
+    public void scheduleWorkWeek() {
+        workWeek.scheduleWorkWeek();
+    }
+
 }

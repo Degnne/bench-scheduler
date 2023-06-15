@@ -24,4 +24,8 @@ public class Benchwork {
     public boolean isBenchFull() {
         return peopleScheduled.size() >= numberOfPeopleRequired;
     }
+
+    public void schedulePerson(Person person) {
+        peopleScheduled.add(person);
+    }
 }
