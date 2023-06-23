@@ -1,13 +1,19 @@
 package org.example.dao;
 
 import org.example.model.Bench;
+import org.springframework.jdbc.core.JdbcTemplate;
 
+import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.util.List;
 
-public class JdbcBenchDao implements BenchDao{
+public class JdbcBenchDao implements BenchDao {
 
-    //private final JdbcTemplate
+    private final JdbcTemplate jdbcTemplate;
+
+    public JdbcBenchDao(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
     @Override
     public Bench getBenchById(int benchId) {
