@@ -9,8 +9,16 @@ public interface BenchDao {
 
     public Bench getBenchById(int benchId);
 
+    public List<Bench> getBenches();
+
     public int getBenchRequirementsByBenchIdAndDate(int benchId, LocalDate date);
 
     public List<Bench> getBenchesTrainedByPersonId(int personId);
+
+    public int deleteBenchById(int id);
+
+    public Bench createBench(Bench bench);
+
+    public Bench updateBench(Bench bench);
 
 }

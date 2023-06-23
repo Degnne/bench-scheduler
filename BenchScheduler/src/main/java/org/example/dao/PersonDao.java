@@ -9,6 +9,8 @@ public interface PersonDao {
 
     public Person getPersonById(int personId);
 
+    public List<Person> getPeople();
+
     public List<Person> getPeopleByTrainedBenchId(int benchId);
 
     public List<Person> getPeopleWorkingByDate(LocalDate date);
