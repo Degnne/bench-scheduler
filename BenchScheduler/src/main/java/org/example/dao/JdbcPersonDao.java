@@ -41,16 +41,37 @@ public class JdbcPersonDao implements PersonDao{
 
     @Override
     public List<Person> getPeopleByTrainedBenchId(int benchId) {
-        return null;
+        List<Person> listOfPeople = new ArrayList<Person>();
+        String sql = "SELECT * FROM person AS p \n" +
+                "JOIN person_trained_bench AS ptb ON p.person_id = ptb.person_id\n" +
+                "WHERE ptb.bench_id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, benchId);
+        while (rowSet.next()) {
+            listOfPeople.add(mapRowToPerson(rowSet));
+        }
+        return listOfPeople;
     }
 
     @Override
     public List<Person> getPeopleWorkingByDate(LocalDate date) {
-        return null;
+        List<Person> listOfPeople = new ArrayList<Person>();
+        String sql = "SELECT * FROM person_day_schedule AS pds\n" +
+                "JOIN person AS p ON pds.person_id = p.person_id\n" +
+                "WHERE pds.day = ? AND is_working = true;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, date);
+        while (rowSet.next()) {
+            listOfPeople.add(mapRowToPerson(rowSet));
+        }
+        return listOfPeople;
     }
 
     @Override
     public List<Person> getPeopleScheduledByDateAndBenchId(LocalDate date, int bench_id) {
+        List<Person> listOfPeople = new ArrayList<Person>();
+        String sql = "SELECT * FROM person_day_schedule AS pds\n" +
+                "JOIN person AS p ON pds.person_id = p.person_id\n" +
+                "WHERE pds.day = ? AND is_working = true AND pds.bench_id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, date, bench_id);
         return null;
     }
 
