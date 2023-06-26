@@ -10,4 +10,8 @@ public class Lab {
     private List<Person> labWorkers;
     private List<Bench> labBenches;
 
+    public Lab() {
+        
+    }
+
 }

@@ -53,6 +53,20 @@ public class JdbcPersonDao implements PersonDao{
     }
 
     @Override
+    public List<Person> getPeopleOrderedByFewestTrainedBenches() {
+        List<Person> listOfPeople = new ArrayList<Person>();
+        String sql = "SELECT p.person_id, p.first_name, p.last_name, COUNT(ptb.bench_id) AS bench_count FROM person AS p\n" +
+                "JOIN person_trained_bench AS ptb ON p.person_id = ptb.person_id\n" +
+                "GROUP BY p.person_id\n" +
+                "ORDER BY bench_count ASC;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+        while (rowSet.next()) {
+            listOfPeople.add(mapRowToPerson(rowSet));
+        }
+        return listOfPeople;
+    }
+
+    @Override
     public List<Person> getPeopleWorkingByDate(LocalDate date) {
         List<Person> listOfPeople = new ArrayList<Person>();
         String sql = "SELECT * FROM person_day_schedule AS pds\n" +

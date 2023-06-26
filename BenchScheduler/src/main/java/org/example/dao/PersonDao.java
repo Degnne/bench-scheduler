@@ -13,6 +13,8 @@ public interface PersonDao {
 
     public List<Person> getPeopleByTrainedBenchId(int benchId);
 
+    public List<Person> getPeopleOrderedByFewestTrainedBenches();
+
     public List<Person> getPeopleWorkingByDate(LocalDate date);
 
     public List<Person> getPeopleScheduledByDateAndBenchId(LocalDate date, int bench_id);
